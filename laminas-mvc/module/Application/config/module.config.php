@@ -21,6 +21,16 @@ return [
                     ],
                 ],
             ],
+            'api-ping' => [
+                'type'    => Literal::class,
+                'options' => [
+                    'route'    => '/api/ping',
+                    'defaults' => [
+                        'controller' => Controller\PingController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
             'application' => [
                 'type'    => Segment::class,
                 'options' => [
@@ -36,6 +46,7 @@ return [
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
+            Controller\PingController::class => InvokableFactory::class,
         ],
     ],
     'view_manager' => [
