@@ -31,8 +31,8 @@ $aggregator = new ConfigAggregator([
     class_exists(\Mezzio\Swoole\ConfigProvider::class)
         ? \Mezzio\Swoole\ConfigProvider::class
         : function (): array {
-            return [];
-        },
+        return [];
+    },
 
     // Default App module config
     App\ConfigProvider::class,
@@ -47,6 +47,14 @@ $aggregator = new ConfigAggregator([
 
     // Load development config if it exists
     new PhpFileProvider(realpath(__DIR__) . '/development.config.php'),
+
+    // this is a demo app - disable cache
+    new ArrayProvider(
+        [
+            'debug' => true,
+            ConfigAggregator::ENABLE_CACHE => false,
+        ]
+    ),
 ], $cacheConfig['config_cache_path']);
 
 return $aggregator->getMergedConfig();

@@ -15,6 +15,11 @@ class PingHandler implements RequestHandlerInterface
 {
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        return new JsonResponse(['ack' => time()]);
+        $myRequestTime = $request->getAttribute('x-my-request-time');
+
+        return new JsonResponse(
+            data: ['ack' => time()],
+            headers: ['x-has-attribute-added-from-middleware' => (!!$myRequestTime) ? 'yes' : 'no']
+        );
     }
 }

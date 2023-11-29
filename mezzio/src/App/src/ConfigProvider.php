@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Middleware\AddAdditionalInfoMiddleware;
+use App\Service\TimeService;
+use Laminas\ServiceManager\Factory\InvokableFactory;
+use Psr\Container\ContainerInterface;
+
 /**
  * The configuration provider for the App module
  *
@@ -34,8 +39,11 @@ class ConfigProvider
             'invokables' => [
                 Handler\PingHandler::class => Handler\PingHandler::class,
             ],
-            'factories'  => [
+            'factories' => [
                 Handler\HomePageHandler::class => Handler\HomePageHandlerFactory::class,
+
+                TimeService::class => InvokableFactory::class,
+                AddAdditionalInfoMiddleware::class => static fn(ContainerInterface $container) => new AddAdditionalInfoMiddleware($container->get(TimeService::class)),
             ],
         ];
     }
@@ -47,8 +55,8 @@ class ConfigProvider
     {
         return [
             'paths' => [
-                'app'    => [__DIR__ . '/../templates/app'],
-                'error'  => [__DIR__ . '/../templates/error'],
+                'app' => [__DIR__ . '/../templates/app'],
+                'error' => [__DIR__ . '/../templates/error'],
                 'layout' => [__DIR__ . '/../templates/layout'],
             ],
         ];
