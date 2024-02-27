@@ -15,7 +15,7 @@ class RequestListener
     {
     }
 
-    public function onKernelRequest(RequestEvent $event)
+    public function onKernelRequest(RequestEvent $event): void
     {
         $request = $event->getRequest();
 
@@ -23,7 +23,7 @@ class RequestListener
         $request->attributes->set('x-my-request-time', $this->timeService->now());
     }
 
-    public function onKernelResponse(ResponseEvent $event)
+    public function onKernelResponse(ResponseEvent $event): void
     {
         if (!$event->isMainRequest()) {
             // don't do anything if it's not the master request

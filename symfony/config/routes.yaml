@@ -3,3 +3,15 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+
+api-ping:
+    path: /api/ping
+    controller: \App\Controller\ApiController
+home:
+    path: /
+    controller: \App\Controller\HomeController::index
+greetings:
+    path: /api/greetings
+    controller: \App\Controller\UserGreetingsController::greetUser
+    methods: [ "post" ]

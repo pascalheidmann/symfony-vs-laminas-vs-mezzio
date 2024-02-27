@@ -17,6 +17,8 @@ class PingHandler implements RequestHandlerInterface
     {
         $myRequestTime = $request->getAttribute('x-my-request-time');
 
+        // business logic
+
         return new JsonResponse(
             data: ['ack' => time()],
             headers: ['x-has-attribute-added-from-middleware' => (!!$myRequestTime) ? 'yes' : 'no']
