@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Listener;
+namespace App\ExternalApi\Listener;
 
-use App\Service\TimeService;
+use BusinessDomain\Service\TimeService;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 

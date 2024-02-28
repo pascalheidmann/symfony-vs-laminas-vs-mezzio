@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\ValueResolver;
+namespace App\ExternalApi\ValueResolver;
 
-use App\Dto\UserDto;
+use App\BusinessDomain\Dto\UserDto;
 use DateTimeImmutable;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ValueResolverInterface;

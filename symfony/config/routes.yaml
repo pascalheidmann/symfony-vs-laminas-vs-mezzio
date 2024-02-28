@@ -1,17 +1,17 @@
 controllers:
     resource:
-        path: ../src/Controller/
-        namespace: App\Controller
+        path: ../src/ExternalApi\Controller/
+        namespace: App\ExternalApi\Controller
     type: attribute
 
 
 api-ping:
     path: /api/ping
-    controller: \App\Controller\ApiController
+    controller: \App\ExternalApi\Controller\ApiController
 home:
     path: /
-    controller: \App\Controller\HomeController::index
+    controller: \App\ExternalApi\Controller\HomeController::index
 greetings:
     path: /api/greetings
-    controller: \App\Controller\UserGreetingsController::greetUser
+    controller: \App\ExternalApi\Controller\UserGreetingsController::greetUser
     methods: [ "post" ]
