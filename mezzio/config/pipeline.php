@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 use Laminas\Stratigility\Middleware\ErrorHandler;
 use Mezzio\Application;
-use Mezzio\Handler\NotFoundHandler;
 use Mezzio\Helper\ServerUrlMiddleware;
 use Mezzio\Helper\UrlHelperMiddleware;
 use Mezzio\MiddlewareFactory;
+use Mezzio\ProblemDetails\ProblemDetailsMiddleware;
+use Mezzio\ProblemDetails\ProblemDetailsNotFoundHandler;
 use Mezzio\Router\Middleware\DispatchMiddleware;
 use Mezzio\Router\Middleware\ImplicitHeadMiddleware;
 use Mezzio\Router\Middleware\ImplicitOptionsMiddleware;
@@ -25,6 +26,7 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     $app->pipe(ErrorHandler::class);
     $app->pipe(ServerUrlMiddleware::class);
 
+    $app->pipe(ProblemDetailsMiddleware::class);
     // Pipe more middleware here that you want to execute on every request:
     // - bootstrapping
     // - pre-conditions
@@ -73,5 +75,5 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     // At this point, if no Response is returned by any middleware, the
     // NotFoundHandler kicks in; alternately, you can provide other fallback
     // middleware to execute.
-    $app->pipe(NotFoundHandler::class);
+    $app->pipe(ProblemDetailsNotFoundHandler::class);
 };
