@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Service;
+namespace BusinessDomain\Service;
 
-use App\Dto\UserDto;
+use BusinessDomain\Dto\UserDto;
 
 final readonly class GreetingsService
 {

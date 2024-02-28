@@ -5,7 +5,6 @@ declare(strict_types=1);
 use Laminas\ConfigAggregator\ArrayProvider;
 use Laminas\ConfigAggregator\ConfigAggregator;
 use Laminas\ConfigAggregator\PhpFileProvider;
-use Mezzio\Helper\ConfigProvider;
 
 // To enable or disable caching, set the `ConfigAggregator::ENABLE_CACHE` boolean in
 // `config/autoload/local.php`.
@@ -22,7 +21,7 @@ $aggregator = new ConfigAggregator([
     \Laminas\Validator\ConfigProvider::class,
     // Include cache configuration
     new ArrayProvider($cacheConfig),
-    ConfigProvider::class,
+    \Mezzio\Helper\ConfigProvider::class,
     \Mezzio\ConfigProvider::class,
     \Mezzio\Router\ConfigProvider::class,
     \Laminas\Diactoros\ConfigProvider::class,
@@ -34,8 +33,9 @@ $aggregator = new ConfigAggregator([
         return [];
     },
 
-    // Default App module config
-    App\ConfigProvider::class,
+    // Default ExternalApi module config
+    \ExternalApi\ConfigProvider::class,
+    \BusinessDomain\ConfigProvider::class,
 
     // Load application config in a pre-defined order in such a way that local settings
     // overwrite global settings. (Loaded as first to last):
