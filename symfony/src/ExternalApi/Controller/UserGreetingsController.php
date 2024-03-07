@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\ExternalApi\Controller;
 
 use App\BusinessDomain\Dto\UserDto;
-use BusinessDomain\Service\GreetingsService;
+use App\BusinessDomain\Service\GreetingsService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final readonly class UserGreetingsController

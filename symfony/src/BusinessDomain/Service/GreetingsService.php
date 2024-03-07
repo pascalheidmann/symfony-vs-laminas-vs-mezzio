@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\BusinessDomain\Service;
 
 use App\BusinessDomain\Dto\UserDto;
-use BusinessDomain\Service\TimeService;
 
 final readonly class GreetingsService
 {
